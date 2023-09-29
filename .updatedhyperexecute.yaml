@@ -1,0 +1,77 @@
+version: "0.2"
+user: mohammadk
+key: rakcBoBYHiy8BW7osVi4N1LGYjgJhRfAwvL1pPUvwCA1wfNChd
+testSuites: []
+pre: [mvn clean install -Dmaven.test.skip=true]
+preDirectives:
+    commands: [mvn clean install -Dmaven.test.skip=true]
+    maxRetries: 0
+    shell: ""
+    workingDirectory: ""
+postDirectives:
+    commands: []
+    shell: ""
+    workingDirectory: ""
+runson: linux
+autosplit: true
+concurrency: 5
+testDiscovery:
+    command: grep 'test name' src/test/java/android-parallel.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
+    mode: static
+    type: raw
+testDiscoveryResult:
+    - '"AndroidAppTest1"'
+    - '"AndroidAppTest2"'
+    - '"AndroidAppTest3"'
+    - '"AndroidAppTest4"'
+    - '"AndroidAppTest5"'
+testRunnerCommand: mvn test -Pandroid-parallel -DselectedTests=$test
+jobID: 7d5f05fa-29e4-4c6e-8721-6c9e6ae3747e
+codeDirectory: LT-appium-java-testng
+report: true
+framework:
+    name: appium
+    flags: []
+    discoveryFlags: []
+    discoveryType: method
+    runnerFlags: []
+    workingDirectory: ""
+    isTestNGXMLSuite: false
+    defaultReports: true
+    args:
+        appPath: ""
+        testSuitePath: ""
+        xcTestPlanPath: ""
+        shards:
+            mappings: []
+        filters:
+            attributes: []
+        devices: []
+        deviceSelectionStrategy: ""
+        appId: ""
+        testSuiteAppId: ""
+        xcTestPlanId: ""
+        video: true
+        deviceLog: true
+        buildName: ""
+        region: us
+        reservation: true
+    additional_args: null
+    licenseKey: ""
+    userdefinediscovery: false
+    toscaArgs: null
+    version: ""
+    downloadURL: ""
+cypress: false
+betaFeature:
+    setPartiallyCompletedAsCompleted: false
+testType: android/appium
+combineTasksInMatrixMode: false
+captureScreenRecordingForScenarios: false
+maxRetriesPreSteps: 0
+triggerMode: false
+sourcePayload:
+    verifySSL: true
+collectLocalGitData: true
+dynamicAllocation: false
+appium: false
