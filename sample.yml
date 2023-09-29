@@ -1,0 +1,23 @@
+version: "0.2"
+runson: android
+autosplit: true
+
+concurrency: 5
+
+pre:
+  - mvn clean install -Dmaven.test.skip=true
+
+#dynamicAllocation: true
+
+testDiscovery:
+  command: grep 'test name' src/test/java/android-parallel.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
+  mode: static
+  type: raw
+
+testRunnerCommand: mvn test -Pandroid-parallel -DselectedTests=$test
+
+framework:
+  name: appium
+  args:
+    region: us
+    # | ap | eu #use any one
